@@ -1,0 +1,78 @@
+.createx-values--dark {
+    background-color: #1E212C;
+    position: relative;
+    padding: 80px 0 126px;
+}
+.createx-values__inner {
+    text-align: center;
+}
+.createx-values__title {
+    font-weight: 700;
+    font-size: 46px;
+    color: #1E212C;
+    line-height: 130%;
+    &--light {
+        color: #fff;
+    }
+}
+.createx-values__text {
+    font-weight: 400;
+    font-size: 18px;
+    color: #787A80;
+    line-height: 150%;
+    padding: 24px 0 60px;
+    &--light {
+        color: rgba(#fff, .6);
+    }
+}
+
+.createx-values__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.createx-values__icon-box {
+    max-width: 285px;
+    svg {
+      fill: #FF5A30;
+    }
+}
+
+.vertical {
+    display: block;
+    width: 188px;
+    height: 1px;
+    border: 0;
+    transform: rotate(90deg);
+    background: linear-gradient(to right, rgba(218, 219, 221, 0), rgba(218, 219, 221, .5), rgba(218, 219, 221, .75), rgba(218, 219, 221, 1), rgba(218, 219, 221, .75), rgba(218, 219, 221, .5), rgba(218, 219, 221, 0));
+}
+
+.createx-values__icon-box__title {
+    font-weight: 700;
+    font-size: 20px;
+    color: #1E212C;
+    line-height: 150%;
+    padding: 24px 0 8px;
+    &--light {
+        color: #fff;
+    }
+}
+
+.createx-values__icon-box__text {
+    font-weight: 400;
+    font-size: 16px;
+    color: #787A80;
+    line-height: 160%;
+    &--light {
+        color: rgba(#fff, .6);
+    }
+}
+
+.btn__large--long {
+    padding: 0 112px;
+    position: absolute;
+    left: 50%;
+    bottom: 0px;
+    transform: translate(-50%, 50%);
+}

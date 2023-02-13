@@ -1,0 +1,109 @@
+.pricing {
+    background-color: #F4F5F6;
+    overflow: hidden;
+    padding: 80px 0 25px;
+    &__inner {
+        position: relative;
+        z-index: 100;
+        
+    }
+    &__title {
+        text-align: center;
+        display: block;
+        font-weight: 700;
+        font-size: 46px;
+        line-height: 130%;
+        color: #1E212C;
+    }
+    &__text {
+        text-align: center;
+        display: block;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 150%;
+        color: #787A80;
+        padding: 24px 0 60px;
+    }
+    &__table {
+        display: block; 
+        background-color: #fff;   
+        border-radius: 4px;
+        overflow: hidden;
+        z-index: 100;
+        border: 1px solid #E5E8ED;
+        margin-bottom: 40px;
+    }
+    &__rows {
+        &-index {
+        display: flex;
+        height: 121px;
+        }
+        &-buttons {
+            display: flex;
+            height: 100px;
+        }
+    }
+    &__index-name-categorites {
+        width: 495px;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 150%;
+        color: #1E212C;
+        padding: 70px 0 0 24px;
+    }
+    &__index-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 245px;
+        
+        &-text {
+            text-align: center;
+        }
+        &-title {
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 150%;
+            color: #1E212C;
+            text-transform: uppercase;
+            padding-bottom: 2px;
+        }
+        &-price {
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 150%;
+            color: #787A80;
+        }
+    }
+    &__row {
+        display: flex;
+        align-items: center;
+        height: 58px;
+        &-categories {
+            padding-left: 24px;
+            width: 495px;
+        }
+        &-value {
+            display: flex;
+            justify-content: center;
+            width: 245px;
+        }
+        &-gray {
+            background-color: #F4F5F6;
+        }
+        &-white {
+            background-color: #fff;
+        }
+    }
+    &__bg {
+        position: absolute;
+        display: block;
+        left: -924px;
+        top: -169px;
+        z-index: -1;
+        opacity: .3;
+        width: 1065px;
+        height: 858px;
+        transform: rotate(126deg);
+    }
+}

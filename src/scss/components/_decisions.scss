@@ -1,0 +1,36 @@
+.decisions {
+  background-color: #F4F5F6;
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__img {
+    display: block;
+    position: relative;
+    top: 80px;
+    left: 0;
+  }
+  &__content{
+    padding-top: 80px;
+    &-title {
+      font-weight: 700;
+      font-size: 46px;
+      line-height: 130%;
+      color: #1E212C;
+      padding-bottom: 60px;
+    }
+    &-points {
+      width: 600px;
+    }
+  }
+  &__points-item {
+    display: flex;
+    align-items: center;
+    &:not(:last-child) {
+      padding-bottom: 20px;
+    }
+    span {
+      padding-left: 16px;
+    }
+  }
+}

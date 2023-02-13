@@ -1,0 +1,85 @@
+.services__hero {
+    background-image: url(../../img/services/background-hero.jpg);
+    background-position: right;
+    background-repeat: no-repeat;
+    background-color: #F4F5F6;
+    height: 600px;
+    &-inner {
+        padding: 152px 0 180px;
+        position: relative;
+    }
+    &-breadcrumbs {
+        display: flex;
+        font-size: 14px;
+        line-height: 150%;
+        color: #9A9CA5;
+        p {
+            font-size: 14px;
+            line-height: 150%;
+            color: #424551;
+        }
+        span {
+            margin: 0 8px;
+            color: #9A9CA5;
+        }
+    }
+    &-txtcontent {
+        max-width: 600px;
+    }
+    &-title {
+        font-size: 72px;
+        font-weight: 700;
+        text-transform: uppercase;
+        line-height: 130%;
+        color: #1E212C;
+        letter-spacing: 1px;
+        padding: 40px 0 24px;
+    }
+    &-text {
+        font-size: 20px;
+        line-height: 150%;
+        color: #787A80;
+    }
+    &-design {
+        background: none;
+        background-color: #F4F5F6;
+        z-index: 10;
+        overflow: hidden;
+        display: block;
+        .services__hero-design-img {
+            position: absolute;
+            opacity: .2;
+            right: -504px;
+            top: -174px;
+            width: 1103px;
+            height: 1088px;
+            z-index: 9;
+            transform: scale(-1, 1);
+        }
+        .aboutus__hero-img1 {
+          opacity: .1;
+          right: -405px;
+          top: -139px;
+        }
+        .aboutus__hero-img2 {
+          position: absolute;
+          opacity: 1;
+          right: -345px;
+          top: 0px;
+          width: 677px;
+          height: 600px;
+          z-index: 10;
+        }
+        .aboutus-target__hero-img {
+          position: absolute;
+          right: -350px;
+          bottom: 0;
+        }
+        &.news__hero {
+          background: url(../../img/services/news-bg.png) no-repeat;
+          background-size: contain;
+          background-position: right;
+          background-color: #F4F5F6;
+        }
+    }
+}

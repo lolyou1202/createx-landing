@@ -1,0 +1,32 @@
+// базовые подключения
+@import "vars";
+@import "mixins";
+@import "fonts";
+@import "settings";
+
+// компоненты страницы
+
+
+// подключения компонентов страницы (большие компоненты)
+@import "./components/style";
+@import "./components/header";
+@import "./components/footer";
+@import "./components/services-hero";
+@import "./components/services-content";
+@import "./components/offer";
+@import "./components/howwedoit";
+@import "./components/createx-values";
+@import "./components/projects";
+@import "./components/pricing";
+@import "./components/work";
+@import "./components/work-target";
+@import "./components/parthers";
+@import "./components/news";
+@import "./components/decisions";
+@import "./components/statistic-aboutus";
+@import "./components/history";
+@import "./components/team";
+@import "./components/worldwide";
+@import "./components/vacancies";
+@import "./components/news-categories";
+

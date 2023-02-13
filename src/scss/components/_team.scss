@@ -1,0 +1,109 @@
+.team {
+  padding-bottom: 120px;
+  overflow: hidden;
+ &__inner {
+  text-align: center;
+  position: relative;
+ }
+ &__title {
+  display: block;
+  font-weight: 700;
+  font-size: 46px;
+  line-height: 130%;
+  color: #1E212C;
+ }
+ &__undertitle {
+  display: block;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 150%;
+  color: #787A80;
+  padding: 24px 0 60px;
+ }
+ &__block {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 60px 30px;
+ }
+ &__item {
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  img {
+    display: block;
+  }
+  &:hover {
+    .team__item-social {
+      max-height: 60px;
+      padding: 20px 100px;
+      transition: max-height .3s ease-in-out, padding .3s ease-in-out;
+    }
+  }
+  &-name {
+    display: block;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 150%;
+    color: #424551;
+    padding: 16px 0 4px;
+  }
+  &-post {
+    display: block;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 160%;
+    color: #787A80;
+  }
+  &-social {
+    position: absolute;
+    bottom: 75px;
+    left: 0;
+    width: 100%;
+    max-height: 0;
+    border-radius: 0 0 4px 4px;
+    background-color: rgba(#FF5A30, .7);
+    display: flex;
+    padding: 0 100px;
+    overflow: hidden;
+    text-decoration: none;
+    -webkit-transition: max-height .3s, padding .3s ease-in-out;
+    transition: max-height .3s ease-in-out, padding .3s ease-in-out;
+    svg {
+      fill: #fff;
+      &:not(:last-child) {
+        margin-right: 12px;
+      }
+      &:hover {
+        fill: #424551;
+        transition: fill .2s ease-in-out;
+      }
+    }
+  }
+ }
+ &__available {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+  &-text {
+    text-align: center;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    color: #1E212C;
+    padding-right: 4px;
+  }
+  a {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    color: #FF5A30;
+    text-decoration: underline;
+    transition: color .2s ease-in-out;
+    &:hover {
+      text-decoration: none;
+      color: #FC3300;
+    }
+  }
+ }
+}

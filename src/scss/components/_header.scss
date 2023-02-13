@@ -1,0 +1,107 @@
+.header {
+    z-index: 100;
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+        position: relative;
+    }
+    &__logo {
+        text-decoration: none;
+        .logo-letter {
+          fill: #1E212C;
+          margin-right: 4px;
+          transition: fill .2s ease-in-out ;
+        }
+        .logo-x {
+            fill: #FF5A30;
+        }
+    }
+    &__logo:hover .logo-letter {
+        fill: #FF5A30;
+    }
+
+    &__contacts {
+        display: flex;
+        &-content {
+            display: flex;
+            flex-direction: column;
+        }
+        &-ico{
+            fill: #FF5A30;
+            margin-right: 12px;
+            transition: fill .2s ease-in-out;
+        }
+        &-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            &:not(:last-child) {
+                margin-right: 36px;
+            }
+            &:hover {
+                .header__contacts-ico {
+                    fill:#FC3300;
+                }
+                .contacts-link__value {
+                    text-decoration: underline;
+                    text-decoration-color: rgba(#1E212C, 1);
+                    transition: text-decoration-color .2s ease-in-out;
+                }
+            }
+        }
+    }
+    .contacts-link__caption {
+        font-weight: 700;
+        font-size: 14px;
+        color:#424551;
+        line-height: 150%;
+    }
+    .contacts-link__value {
+        font-weight: 400;
+        font-size: 18px;
+        color:#1E212C;
+        line-height: 150%;
+        text-decoration: underline;
+        text-decoration-color: rgba(#1E212C, 0);
+        transition: text-decoration-color .2s ease-in-out;
+    }
+    &-transparent {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    &__inner-transparent {
+        width: 1230px;
+
+    }
+}
+
+.nav {
+    position: absolute;
+    left: 190px;
+    &__list {
+        display: flex;
+        padding: 0;
+        margin: 0;
+    }
+    &__item {
+        display: block;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 160%;
+    }
+    &__item:hover &__link {
+        color:#FF5A30;
+    }
+    &__item:not(:last-child) {
+        margin-right: 40px;
+    }
+    &__link {
+        text-decoration: none;
+        color:#424551;
+        transition: color .2s ease-in-out;
+    }
+}

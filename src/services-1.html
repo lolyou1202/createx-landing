@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link rel="stylesheet" href="css/vendor.css">
+	<link rel="stylesheet" href="css/main.css">
+	<title>Createx Constraction</title>
+
+</head>
+
+<body>
+    @include('partials/header-transparent.html')
+    <main>
+      @include('partials/services-hero-1.html')
+      @include('partials/offer.html')
+      @include('partials/howwedoit.html')
+      @include('partials/benefits.html')
+      @include('partials/services-1-project.html')
+      @include('partials/pricing.html')
+
+
+      @include('partials/details.html')
+    </main>
+    @include('partials/footer.html')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+</body>
+<script src="js/main.js"></script>
+<script>
+  setInterval(f_item, 20000);
+
+  const item1 = document.querySelector('.howwedo__item1');
+  const item2 = document.querySelector('.howwedo__item2');
+  const item3 = document.querySelector('.howwedo__item3');
+  const item4 = document.querySelector('.howwedo__item4');
+
+  setTimeout(() => {
+      item2.classList.add('howwedo__item--active');
+      item1.classList.remove('howwedo__item--active');
+  }, 5000)
+  setTimeout(() => {
+      item3.classList.add('howwedo__item--active');
+      item2.classList.remove('howwedo__item--active');
+  }, 10000)
+  setTimeout(() => {
+      item4.classList.add('howwedo__item--active');
+      item3.classList.remove('howwedo__item--active');
+  }, 15000)
+
+  function f_item() {
+      item4.classList.remove('howwedo__item--active');
+      item1.classList.add('howwedo__item--active');
+      setTimeout(() => {
+          item2.classList.add('howwedo__item--active');
+          item1.classList.remove('howwedo__item--active');
+      }, 5000)
+      setTimeout(() => {
+          item3.classList.add('howwedo__item--active');
+          item2.classList.remove('howwedo__item--active');
+      }, 10000)
+      setTimeout(() => {
+          item4.classList.add('howwedo__item--active');
+          item3.classList.remove('howwedo__item--active');
+      }, 15000)
+  }
+</script>
+</html>
