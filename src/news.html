@@ -1,230 +1,330 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+        />
+        <link rel="stylesheet" href="css/vendor.css" />
+        <link rel="stylesheet" href="css/main.css" />
+        <title>Createx Constraction</title>
+    </head>
 
-<head>
-  <meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-  <link rel="stylesheet" href="css/vendor.css">
-	<link rel="stylesheet" href="css/main.css">
-	<title>Createx Constraction</title>
+    <body>
+        @include('partials/header-transparent.html')
+        <main>
+            @include('partials/news-hero.html')
+            @include('partials/news-categories.html')
+            @include('partials/details.html')
+        </main>
+        @include('partials/footer.html')
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script
+            type="text/javascript"
+            src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+        ></script>
+    </body>
+    <script src="js/main.js"></script>
+    <script>
+        const categoriesNav = document.querySelector('.categories__nav')
+        const categoriesNavBtn = document.querySelectorAll(
+            '.btn__categories-nav'
+        )
+        const categoriesItem = document.querySelectorAll(
+            '.categories__list-item'
+        )
+        const categoriesPaginationNav = document.querySelector(
+            '.categories__pagination-list'
+        )
+        const categoriesPaginationItem = document.querySelectorAll(
+            '.categories__pagination-item'
+        )
+        const categoriesPaginationNumb = document.querySelectorAll('.numb')
+        const maxElements = 6
 
-</head>
+        //функция, высчитывающая первые шесть элементов, найденных по селектору и скрывающая остальные
+        const hideMoreElements = selector => {
+            if (selector.length > maxElements) {
+                //превращаем все эелементы селектора в массив
+                const arr = Array.from(selector)
+                //копируем массив, в котором нет первых шести элементов
+                const hiddenElements = arr.slice(maxElements, selector.length)
+                //убираем у этих последних элементов класс видимости
+                hiddenElements.forEach(el => {
+                    el.classList.remove('categories__list-item--visible')
+                })
+            }
+        }
 
-<body>
-    @include('partials/header-transparent.html')
-    <main>
-      @include('partials/news-hero.html')
-      @include('partials/news-categories.html')
+        function paintPaginationButton(count) {
+            for (i = 1, r = ''; i <= count; i++) {
+                r += `<button class="numb" data-info="${i}">${i}</button>`
+            }
+            return r
+        }
+        //функция считывающая клик по панели навигации
+        categoriesNav.addEventListener('click', e => {
+            //запоминаем в переменную исходный блок навигации
+            const target = e.target
+            //если был клик по какой то кнопке, то...
+            if (target.classList.contains('btn__categories-nav')) {
+                //запоминаем в переменную значение dataset path этой кнопки
+                var path = target.dataset.path
 
-      @include('partials/details.html')
-    </main>
-    @include('partials/footer.html')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-</body>
-<script src="js/main.js"></script>
-<script>
-  const categoriesNav = document.querySelector('.categories__nav');
-  const categoriesNavBtn = document.querySelectorAll('.btn__categories-nav');
-  const categoriesItem = document.querySelectorAll('.categories__list-item');
-  const categoriesPaginationNav = document.querySelector('.categories__pagination-list');
-  const categoriesPaginationItem = document.querySelectorAll('.categories__pagination-item');
-  const categoriesPaginationNumb = document.querySelectorAll('.numb');
-  const maxElements = 6;
+                document
+                    .querySelectorAll('.categories__list-item')
+                    .forEach((el, index) => {
+                        el.closest('.categories__list-item').setAttribute(
+                            'data-index',
+                            '0'
+                        )
+                    })
 
-  //функция, высчитывающая первые шесть элементов, найденных по селектору и скрывающая остальные
-  const hideMoreElements = (selector) => {
-    if (selector.length > maxElements) {
-      //превращаем все эелементы селектора в массив
-      const arr = Array.from(selector);
-      //копируем массив, в котором нет первых шести элементов
-      const hiddenElements = arr.slice(maxElements, selector.length);
-      //убираем у этих последних элементов класс видимости
-      hiddenElements.forEach(el => {
-          el.classList.remove('categories__list-item--visible');
-      });
-    }
-  };
+                const deleteList = document.querySelector(
+                    '.categories__pagination-num'
+                )
+                deleteList.remove()
+                setTimeout(function () {
+                    console.log(document.querySelectorAll('.numb').length)
+                    if (document.querySelectorAll('.numb').length == 1) {
+                        document
+                            .querySelector('.right__button')
+                            .setAttribute('disabled', true)
+                    }
+                }, 600)
+                //сразу же добавляем класс анимации для всех элементов, скрывая их из вида
+                categoriesItem.forEach(el => {
+                    el.classList.add(
+                        'categories__list-item--visible--animation'
+                    )
+                })
+                //убираем у всех кнопок навигации класс active
+                categoriesNavBtn.forEach(el => {
+                    el.classList.remove('btn__categories-nav--active')
+                })
+                //даём его только элементу, который был только что нажат
+                target.classList.add('btn__categories-nav--active')
 
-  function paintPaginationButton(count){
-    for(i=1, r=""; i <= count; i++){
-        r += `<button class="numb" data-info="${i}">${i}</button>`
-    }
-    return r
-  }
-  //функция считывающая клик по панели навигации
-  categoriesNav.addEventListener('click', (e) => {
-    //запоминаем в переменную исходный блок навигации
-    const target = e.target;
-    //если был клик по какой то кнопке, то...
-    if (target.classList.contains('btn__categories-nav')) {
-      //запоминаем в переменную значение dataset path этой кнопки
-      var path = target.dataset.path;
+                setTimeout(function () {
+                    //убираем класс visible, чтобы потом дать его нужным фильтрованным элементам
+                    categoriesItem.forEach(el => {
+                        el.classList.remove('categories__list-item--visible')
+                    })
+                    //среди всех элементов класа list-item, даём класс visible всем отфильтрованным элементам, подходящим под dataset кнопки
+                    document
+                        .querySelectorAll(`[data-target="${path}"]`)
+                        .forEach(el => {
+                            el.closest('.categories__list-item').classList.add(
+                                'categories__list-item--visible'
+                            )
+                        })
+                    //вызываем функцию скрытия элементов с седьмой позиции со страницы
+                    hideMoreElements(
+                        document.querySelectorAll(
+                            '.categories__list-item--visible'
+                        )
+                    )
+                    //если была нажата кнопка All news
+                    if (path == 'all') {
+                        //добавляем всем элементам видимость
+                        categoriesItem.forEach(el => {
+                            el.classList.add('categories__list-item--visible')
+                        })
+                        //вызываем функцию скрытия элементов с седьмой позиции со страницы
+                        hideMoreElements(
+                            document.querySelectorAll(
+                                '.categories__list-item--visible'
+                            )
+                        )
 
-      document.querySelectorAll('.categories__list-item').forEach((el, index) => {
-        el.closest('.categories__list-item').setAttribute("data-index", "0");
-      });
+                        const lengthCategories = document.querySelectorAll(
+                            '.categories__list-item'
+                        ).length
+                        let countPage = Math.ceil(lengthCategories / 6)
 
-      const deleteList = document.querySelector('.categories__pagination-num');
-      deleteList.remove();
-      setTimeout(function() {
-      console.log(document.querySelectorAll('.numb').length);
-      if (document.querySelectorAll('.numb').length == 1) {
-        document.querySelector('.right__button').setAttribute('disabled', true);
-      };
-      }, 600)
-      //сразу же добавляем класс анимации для всех элементов, скрывая их из вида
-      categoriesItem.forEach(el => {
-        el.classList.add('categories__list-item--visible--animation');
-      });
-      //убираем у всех кнопок навигации класс active
-      categoriesNavBtn.forEach(el => {
-        el.classList.remove('btn__categories-nav--active')
-      });
-      //даём его только элементу, который был только что нажат
-      target.classList.add('btn__categories-nav--active');
+                        document
+                            .querySelectorAll('.categories__list-item')
+                            .forEach((el, index) => {
+                                el.closest(
+                                    '.categories__list-item'
+                                ).setAttribute(
+                                    'data-index',
+                                    Math.ceil(`${index + 1}` / 6)
+                                )
+                            })
 
-      setTimeout(function() {
-        //убираем класс visible, чтобы потом дать его нужным фильтрованным элементам
-        categoriesItem.forEach(el => {
-          el.classList.remove('categories__list-item--visible');
-        });
-        //среди всех элементов класа list-item, даём класс visible всем отфильтрованным элементам, подходящим под dataset кнопки
-        document.querySelectorAll(`[data-target="${path}"]`).forEach(el => {
-          el.closest('.categories__list-item').classList.add('categories__list-item--visible');
-        });
+                        var paginationList =
+                            document.querySelector('#pagination-list')
+                        var paginationItem = document.createElement('li')
+                        paginationItem.setAttribute(
+                            'class',
+                            'categories__pagination-item categories__pagination-num'
+                        )
+                        paginationItem.innerHTML =
+                            paintPaginationButton(countPage)
+                        paginationList.insertBefore(
+                            paginationItem,
+                            paginationList.children[1]
+                        )
+                    } else {
+                        const lengthCategories = document.querySelectorAll(
+                            `[data-target="${path}"]`
+                        ).length
+                        let countPage = Math.ceil(lengthCategories / 6)
+                        document
+                            .querySelectorAll(`[data-target="${path}"]`)
+                            .forEach((el, index) => {
+                                el.closest(
+                                    '.categories__list-item'
+                                ).setAttribute(
+                                    'data-index',
+                                    Math.ceil(`${index + 1}` / 6)
+                                )
+                            })
+
+                        var paginationList =
+                            document.querySelector('#pagination-list')
+                        var paginationItem = document.createElement('li')
+                        paginationItem.setAttribute(
+                            'class',
+                            'categories__pagination-item categories__pagination-num'
+                        )
+                        paginationItem.innerHTML =
+                            paintPaginationButton(countPage)
+                        paginationList.insertBefore(
+                            paginationItem,
+                            paginationList.children[1]
+                        )
+
+                        document
+                            .querySelector('.numb')
+                            .classList.add(
+                                'categories__pagination-item--active'
+                            )
+                    }
+                }, 300)
+
+                setTimeout(function () {
+                    //убираем анимацию скрытия всех элементов, делая видимыми те, у кого остался класс visible
+                    categoriesItem.forEach(el => {
+                        el.classList.remove(
+                            'categories__list-item--visible--animation'
+                        )
+                    })
+                }, 600)
+            }
+        })
+
         //вызываем функцию скрытия элементов с седьмой позиции со страницы
-        hideMoreElements(document.querySelectorAll('.categories__list-item--visible'));
-        //если была нажата кнопка All news
-        if (path == 'all') {
-          //добавляем всем элементам видимость
-          categoriesItem.forEach(el => {
-            el.classList.add('categories__list-item--visible');
-          });
-          //вызываем функцию скрытия элементов с седьмой позиции со страницы
-          hideMoreElements(document.querySelectorAll('.categories__list-item--visible'));
+        hideMoreElements(categoriesItem)
 
-          const lengthCategories = document.querySelectorAll('.categories__list-item').length;
-          let countPage = Math.ceil(lengthCategories / 6);
+        document
+            .querySelectorAll('.categories__list-item')
+            .forEach((el, index) => {
+                el.closest('.categories__list-item').setAttribute(
+                    'data-index',
+                    Math.ceil(`${index + 1}` / 6)
+                )
+            })
 
-          document.querySelectorAll('.categories__list-item').forEach((el, index) => {
-            el.closest('.categories__list-item').setAttribute("data-index", Math.ceil(`${index + 1}` / 6));
-          });
+        const lengthCategories = document.querySelectorAll(
+            '.categories__list-item'
+        ).length
+        let countPage = Math.ceil(lengthCategories / 6)
 
-          var paginationList = document.querySelector('#pagination-list');
-          var paginationItem = document.createElement("li");
-          paginationItem.setAttribute("class","categories__pagination-item categories__pagination-num");
-          paginationItem.innerHTML = paintPaginationButton(countPage);
-          paginationList.insertBefore(paginationItem, paginationList.children[1]);
+        var paginationList = document.querySelector('#pagination-list')
+        var paginationItem = document.createElement('li')
+        paginationItem.setAttribute(
+            'class',
+            'categories__pagination-item categories__pagination-num'
+        )
+        paginationItem.innerHTML = paintPaginationButton(countPage)
+        paginationList.insertBefore(paginationItem, paginationList.children[1])
 
-        } else {
+        document
+            .querySelector('.numb')
+            .classList.add('categories__pagination-item--active')
+        document.querySelector('.left__button').setAttribute('disabled', true)
 
-          const lengthCategories = document.querySelectorAll(`[data-target="${path}"]`).length;
-          let countPage = Math.ceil(lengthCategories / 6);
-          document.querySelectorAll(`[data-target="${path}"]`).forEach((el, index) => {
-            el.closest('.categories__list-item').setAttribute("data-index", Math.ceil(`${index + 1}` / 6));
-          });
+        //функция считывающая клик по панели пагинации
+        categoriesPaginationNav.addEventListener('click', e => {
+            //запоминаем в переменную исходный блок пагинации
+            const target = e.target
 
-          var paginationList = document.querySelector('#pagination-list');
-          var paginationItem = document.createElement("li");
-          paginationItem.setAttribute("class","categories__pagination-item categories__pagination-num");
-          paginationItem.innerHTML = paintPaginationButton(countPage);
-          paginationList.insertBefore(paginationItem, paginationList.children[1]);
+            if (target.classList.contains('left__button')) {
+            }
 
-          document.querySelector('.numb').classList.add('categories__pagination-item--active');
-        }
-      }, 300)
+            if (target.classList.contains('numb')) {
+                const index = target.dataset.info
 
-      setTimeout(function() {
-        //убираем анимацию скрытия всех элементов, делая видимыми те, у кого остался класс visible
-        categoriesItem.forEach(el => {
-          el.classList.remove('categories__list-item--visible--animation');
-        });
-      }, 600)
-    }
-  });
+                categoriesItem.forEach(el => {
+                    el.classList.remove('categories__list-item--visible')
+                })
 
+                document
+                    .querySelectorAll(`[data-index="${index}"]`)
+                    .forEach(el => {
+                        el.closest('.categories__list-item').classList.add(
+                            'categories__list-item--visible'
+                        )
+                    })
 
-  //вызываем функцию скрытия элементов с седьмой позиции со страницы
-  hideMoreElements(categoriesItem);
+                document.querySelectorAll('.numb').forEach(el => {
+                    el.classList.remove('categories__pagination-item--active')
+                })
+                target.classList.add('categories__pagination-item--active')
+            }
 
-  document.querySelectorAll('.categories__list-item').forEach((el, index) => {
-    el.closest('.categories__list-item').setAttribute("data-index", Math.ceil(`${index + 1}` / 6));
-  });
+            if (target.classList.contains('right__button')) {
+                const numbContent = Number(
+                    document.querySelector(
+                        '.categories__pagination-item--active'
+                    ).textContent
+                )
+                console.log(document.querySelectorAll('.numb').length)
+                console.log(numbContent)
+                if (document.querySelectorAll('.numb').length > numbContent) {
+                    categoriesItem.forEach(el => {
+                        el.classList.remove('categories__list-item--visible')
+                    })
+                    document
+                        .querySelector('.left__button')
+                        .setAttribute('disabled', false)
 
-  const lengthCategories = document.querySelectorAll('.categories__list-item').length;
-  let countPage = Math.ceil(lengthCategories / 6);
+                    document
+                        .querySelector(`[data-info="${numbContent}"]`)
+                        .classList.remove('categories__pagination-item--active')
+                    document
+                        .querySelector(`[data-info="${numbContent + 1}"]`)
+                        .classList.add('categories__pagination-item--active')
 
-  var paginationList = document.querySelector('#pagination-list');
-  var paginationItem = document.createElement("li");
-  paginationItem.setAttribute("class","categories__pagination-item categories__pagination-num");
-  paginationItem.innerHTML = paintPaginationButton(countPage);
-  paginationList.insertBefore(paginationItem, paginationList.children[1]);
-
-  document.querySelector('.numb').classList.add('categories__pagination-item--active');
-  document.querySelector('.left__button').setAttribute('disabled', true);
-
-
-
-
-  //функция считывающая клик по панели пагинации
-  categoriesPaginationNav.addEventListener('click', (e) => {
-    //запоминаем в переменную исходный блок пагинации
-    const target = e.target;
-
-    if (target.classList.contains('left__button')) {
-
-    }
-
-    if (target.classList.contains('numb')) {
-      const index = target.dataset.info;
-
-      categoriesItem.forEach(el => {
-        el.classList.remove('categories__list-item--visible');
-      });
-
-      document.querySelectorAll(`[data-index="${index}"]`).forEach(el => {
-        el.closest('.categories__list-item').classList.add('categories__list-item--visible');
-      });
-
-      document.querySelectorAll('.numb').forEach(el => {
-        el.classList.remove('categories__pagination-item--active')
-      });
-      target.classList.add('categories__pagination-item--active');
-    }
-
-    if (target.classList.contains('right__button')) {
-
-      const numbContent = Number(document.querySelector('.categories__pagination-item--active').textContent);
-      console.log(document.querySelectorAll('.numb').length);
-      console.log(numbContent);
-      if (document.querySelectorAll('.numb').length > numbContent) {
-
-        categoriesItem.forEach(el => {
-          el.classList.remove('categories__list-item--visible');
-        });
-        document.querySelector('.left__button').setAttribute('disabled', false);
-
-        document.querySelector(`[data-info="${numbContent}"]`).classList.remove('categories__pagination-item--active');
-        document.querySelector(`[data-info="${numbContent + 1}"]`).classList.add('categories__pagination-item--active');
-
-        document.querySelectorAll(`[data-index="${numbContent + 1}"]`).forEach(el => {
-          el.closest('.categories__list-item').classList.add('categories__list-item--visible');
-        });
-        console.log(document.querySelectorAll('.numb').length);
-        console.log(numbContent);
-        if (document.querySelectorAll('.numb').length == numbContent+1) {
-          document.querySelector('.right__button').setAttribute('disabled', true);
-        }
-
-      } else {
-        document.querySelector('.right__button').setAttribute('disabled', true);
-      }
-
-    }
-
-  });
-</script>
+                    document
+                        .querySelectorAll(`[data-index="${numbContent + 1}"]`)
+                        .forEach(el => {
+                            el.closest('.categories__list-item').classList.add(
+                                'categories__list-item--visible'
+                            )
+                        })
+                    console.log(document.querySelectorAll('.numb').length)
+                    console.log(numbContent)
+                    if (
+                        document.querySelectorAll('.numb').length ==
+                        numbContent + 1
+                    ) {
+                        document
+                            .querySelector('.right__button')
+                            .setAttribute('disabled', true)
+                    }
+                } else {
+                    document
+                        .querySelector('.right__button')
+                        .setAttribute('disabled', true)
+                }
+            }
+        })
+    </script>
 </html>

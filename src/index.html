@@ -1,62 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+        />
+        <link rel="stylesheet" href="css/vendor.css" />
+        <link rel="stylesheet" href="css/main.css" />
+        <title>Createx Constraction</title>
+    </head>
+    <body>
+        @include('partials/header.html')
+        <main>
+            @include('partials/hero.html')
+            @include('partials/createx.html')
+            @include('partials/services.html')
+            @include('partials/projects.html')
+            @include('partials/parthers.html')
+            @include('partials/facts-news.html')
+            @include('partials/details.html')
+        </main>
+        @include('partials/footer.html')
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script
+            type="text/javascript"
+            src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+        ></script>
+    </body>
+    <script src="js/main.js"></script>
+    <script>
+        const videoBlock = document.querySelector('.createx-video__block')
+        const video = videoBlock.querySelector('video')
+        const playBtn = videoBlock.querySelector('.createx-video__block-play')
+        const mutedBtn = videoBlock.querySelector('.createx-video__block-muted')
+        const unmutedBtn = videoBlock.querySelector(
+            '.createx-video__block-unmuted'
+        )
 
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-  <link rel="stylesheet" href="css/vendor.css">
-	<link rel="stylesheet" href="css/main.css">
-	<title>Createx Constraction</title>
-</head>
+        playBtn.addEventListener('click', () => {
+            videoBlock.classList.add('createx-video__block--played')
+            video.play()
+            playBtn.classList.add('createx-video__block-play--played')
+        })
 
-	<body>
-		@include('partials/header.html')
-		<main>
-			@include('partials/hero.html')
-			@include('partials/createx.html')
-			@include('partials/services.html')
-			@include('partials/projects.html')
-			@include('partials/parthers.html')
-			@include('partials/facts-news.html')
-			@include('partials/details.html')
-		</main>
-		@include('partials/footer.html')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        video.addEventListener('click', () => {
+            videoBlock.classList.remove('createx-video__block--played')
+            video.pause()
+            playBtn.classList.remove('createx-video__block-play--played')
+        })
 
-	</body>
-  <script src="js/main.js"></script>
-  <script>
-    const videoBlock = document.querySelector('.createx-video__block');
-    const video = videoBlock.querySelector('video');
-    const playBtn = videoBlock.querySelector('.createx-video__block-play');
-    const mutedBtn = videoBlock.querySelector('.createx-video__block-muted');
-    const unmutedBtn = videoBlock.querySelector('.createx-video__block-unmuted');
+        mutedBtn.addEventListener('click', () => {
+            video.muted = true
+            mutedBtn.classList.add('createx-video__block-muted--muted')
+            unmutedBtn.classList.add('createx-video__block-unmuted--unmuted')
+        })
 
-    playBtn.addEventListener('click', () => {
-        videoBlock.classList.add('createx-video__block--played');
-        video.play();
-        playBtn.classList.add('createx-video__block-play--played');
-    });
-
-    video.addEventListener('click', () => {
-        videoBlock.classList.remove('createx-video__block--played');
-        video.pause();
-        playBtn.classList.remove('createx-video__block-play--played');
-    });
-
-    mutedBtn.addEventListener('click', () => {
-        video.muted = true;
-        mutedBtn.classList.add('createx-video__block-muted--muted');
-        unmutedBtn.classList.add('createx-video__block-unmuted--unmuted');
-    });
-
-    unmutedBtn.addEventListener('click', () => {
-        video.muted = false;
-        mutedBtn.classList.remove('createx-video__block-muted--muted');
-        unmutedBtn.classList.remove('createx-video__block-unmuted--unmuted');
-    });
-  </script>
+        unmutedBtn.addEventListener('click', () => {
+            video.muted = false
+            mutedBtn.classList.remove('createx-video__block-muted--muted')
+            unmutedBtn.classList.remove('createx-video__block-unmuted--unmuted')
+        })
+    </script>
 </html>
